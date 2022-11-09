@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title th:text="${title}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header" class="p-3 mb-3 border-bottom">
+</header>
+
+<div class="container mt-5 mb-5">
+    <h1>Регистрация</h1>
+    <form action="#"
+          th:action="@{/register}"
+          th:object="${account}"
+          method="POST">
+        <div>
+            <label for="firstname">Имя</label>
+            <input id="firstname" type="text" th:field="*{firstName}" placeholder="Введите свое имя" class="form-control"><br>
+        </div>
+        <div>
+            <label for="lastname">Фамилия</label>
+            <input id="lastname" type="text" th:field="*{lastName}" placeholder="Введите свою фамилию" class="form-control"><br>
+        </div>
+        <div>
+            <label for="username">Адрес электронной почты</label>
+            <input id="username" type="text" th:field="*{username}" placeholder="Введите email" class="form-control"><br>
+        </div>
+        <div>
+            <label for="password">Пароль</label>
+            <input id="password" type="password" th:field="*{password}" placeholder="Придумайте пароль" class="form-control"><br>
+        </div>
+        <div>
+            <label for="passwordConfirm">Подтверждение пароля</label>
+            <input id="passwordConfirm" type="password" th:field="*{passwordConfirm}" placeholder="Подтвердите пароль" class="form-control"><br>
+        </div>
+        <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+    </form>
+</div>
+
+
+
+
+<!--div class="container mt-5 mb-5">
+    <h1>Регистрация</h1>
+    <form action="/register" method="post">
+        <input type="text" name="email" placeholder="Введите email" class="form-control"><br>
+        <input type="text" name="password" placeholder="Введите пароль" class="form-control"><br>
+        <input type="text" name="firstName" placeholder="Введите свое имя" class="form-control"><br>
+        <input type="text" name="lastName" placeholder="Введите свою фамилию" class="form-control"><br>
+        <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+    </form>
+</div-->
+</body>
+</html>
