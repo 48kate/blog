@@ -1,4 +1,4 @@
-package com.example.blog.repo;
+package com.example.blog.Services;
 
 public interface SecurityService {
     String findLoggedInUsername();

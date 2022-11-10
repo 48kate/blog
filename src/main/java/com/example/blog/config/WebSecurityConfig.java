@@ -21,7 +21,8 @@ public class WebSecurityConfig {
     @Qualifier ("accountService")
     @Autowired
     AccountService accountService;
-    AuthenticationManager authenticationManager;
+    AuthenticationManagerImpl authenticationManager;
+
 
     @Bean
     public static BCryptPasswordEncoder bCryptPasswordEncoder() {

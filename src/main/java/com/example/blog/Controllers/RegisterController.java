@@ -2,7 +2,7 @@ package com.example.blog.Controllers;
 
 import com.example.blog.Models.Account;
 import com.example.blog.Services.AccountService;
-import com.example.blog.repo.SecurityService;
+import com.example.blog.Services.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
