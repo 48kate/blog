@@ -16,7 +16,7 @@ import java.util.Set;
 
 public class Account implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //генерацией id будет заниматься бд
+    @GeneratedValue(strategy = GenerationType.AUTO) //генерацией id будет заниматься бд
     private Long id;
     private String firstName, lastName, username;
     private String password;

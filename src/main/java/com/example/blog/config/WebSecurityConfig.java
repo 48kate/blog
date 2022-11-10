@@ -2,8 +2,11 @@ package com.example.blog.config;
 
 import com.example.blog.Services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,12 +14,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-
+@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebSecurityConfig {
+    @Qualifier ("accountService")
     @Autowired
     AccountService accountService;
+    AuthenticationManager authenticationManager;
+
     @Bean
     public static BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -47,7 +53,7 @@ public class WebSecurityConfig {
                 .passwordParameter("password")
                 //Перенаправление на главную страницу после успешного входа
                 .defaultSuccessUrl("/",true)
-                .failureUrl("/login?error")
+                //.failureUrl("/login?error")
                 .permitAll()
                 .and()
                 .logout()
@@ -57,6 +63,11 @@ public class WebSecurityConfig {
                 .httpBasic();
         return http.build();
     }
+    @Bean
+    public AuthenticationManager customAuthenticationManager() throws Exception {
+        return authenticationManager;
+    }
+
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(accountService).passwordEncoder(bCryptPasswordEncoder());

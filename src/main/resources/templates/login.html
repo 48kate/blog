@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang=""
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
   <title th:text="${title}" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,7 +12,8 @@
   <h1>Войдите в свой аккаунт</h1>
     <form action="#"
           th:action="@{/login}"
-          method="POST">
+          method="POST"
+          class="form-signin">
       <div>
         <label for="username">Email</label>
         <input id="username" type="text" name="username" placeholder="Введите адрес электронной почты" class="form-control"><br>
@@ -28,6 +28,3 @@
 </body>
 </html>
 
-
-<!-- <input type="text" name="email" placeholder="Введите email" class="form-control"><br>
-    <input type="text" name="password" placeholder="Введите пароль" class="form-control"><br>

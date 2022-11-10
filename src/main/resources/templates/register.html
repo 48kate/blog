@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      lang="">
 <head>
     <title th:text="${title}" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -11,46 +12,39 @@
 
 <div class="container mt-5 mb-5">
     <h1>Регистрация</h1>
-    <form action="#"
-          th:action="@{/register}"
-          th:object="${account}"
-          method="POST">
-        <div>
-            <label for="firstname">Имя</label>
-            <input id="firstname" type="text" th:field="*{firstName}" placeholder="Введите свое имя" class="form-control"><br>
-        </div>
-        <div>
-            <label for="lastname">Фамилия</label>
-            <input id="lastname" type="text" th:field="*{lastName}" placeholder="Введите свою фамилию" class="form-control"><br>
-        </div>
-        <div>
-            <label for="username">Адрес электронной почты</label>
-            <input id="username" type="text" th:field="*{username}" placeholder="Введите email" class="form-control"><br>
-        </div>
-        <div>
-            <label for="password">Пароль</label>
-            <input id="password" type="password" th:field="*{password}" placeholder="Придумайте пароль" class="form-control"><br>
-        </div>
+    <form action="/register" method="post">
+        <input type="text" name="firstName" placeholder="Введите свое имя" class="form-control"><br>
+        <input type="text" name="lastName" placeholder="Введите свою фамилию" class="form-control"><br>
+        <input type="text" name="username" placeholder="Введите email" class="form-control"><br>
+        <input type="password" name="password" placeholder="Введите пароль" class="form-control"><br>
+        <input type="password" name="passwordConfirm" placeholder="Подтвердите пароль" class="form-control"><br>
+        <!--form action="#"
+              th:action="@{/register}"
+              th:object="${account}"
+              method="POST">
+            <div>
+                <label for="firstname">Имя</label>
+                <input id="firstname" type="text" th:field="*{firstName}" placeholder="Введите свое имя" class="form-control"><br>
+            </div>
+            <div>
+                <label for="lastname">Фамилия</label>
+                <input id="lastname" type="text" th:field="*{lastName}" placeholder="Введите свою фамилию" class="form-control"><br>
+            </div>
+            <div>
+                <label for="username">Адрес электронной почты</label>
+                <input id="username" type="text" th:field="*{username}" placeholder="Введите email" class="form-control"><br>
+            </div>
+            <div>
+                <label for="password">Пароль</label>
+                <input id="password" type="password" th:field="*{password}" placeholder="Придумайте пароль" class="form-control"><br>
+            </div>
         <div>
             <label for="passwordConfirm">Подтверждение пароля</label>
             <input id="passwordConfirm" type="password" th:field="*{passwordConfirm}" placeholder="Подтвердите пароль" class="form-control"><br>
-        </div>
+        </div-->
         <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+    </input>
     </form>
 </div>
-
-
-
-
-<!--div class="container mt-5 mb-5">
-    <h1>Регистрация</h1>
-    <form action="/register" method="post">
-        <input type="text" name="email" placeholder="Введите email" class="form-control"><br>
-        <input type="text" name="password" placeholder="Введите пароль" class="form-control"><br>
-        <input type="text" name="firstName" placeholder="Введите свое имя" class="form-control"><br>
-        <input type="text" name="lastName" placeholder="Введите свою фамилию" class="form-control"><br>
-        <button type="submit" class="btn btn-success">Зарегистрироваться</button>
-    </form>
-</div-->
 </body>
 </html>

@@ -54,6 +54,7 @@ public class AccountService implements UserDetailsService {
         if (accountFromDB != null) {
             return false;
         }
+        account.setId(account.getId());
         account.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         account.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
         accountRepository.save(account);
