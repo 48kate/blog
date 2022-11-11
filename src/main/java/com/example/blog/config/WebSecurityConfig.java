@@ -50,7 +50,7 @@ public class WebSecurityConfig {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .usernameParameter("email")
+                .usernameParameter("username")
                 .passwordParameter("password")
                 //Перенаправление на главную страницу после успешного входа
                 .defaultSuccessUrl("/",true)

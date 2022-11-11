@@ -29,7 +29,7 @@ public class ArticleController {
     private AccountRepository accountRepository;
 
     @GetMapping("/add")
-    //@PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public String Add(Model model, Principal principal) {
 
         String authUsername = "anonymousUser";
@@ -50,7 +50,7 @@ public class ArticleController {
 
     }
     @PostMapping("/add")
-    //@PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public String PostAdd(@ModelAttribute Article article, Principal principal) {
         String authUsername = "anonymousUser";
         if (principal != null) {

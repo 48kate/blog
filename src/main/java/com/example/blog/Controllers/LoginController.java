@@ -16,6 +16,7 @@ public class LoginController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
+
     }
    /*
     @GetMapping("/login")

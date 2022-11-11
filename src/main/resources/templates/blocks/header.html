@@ -10,22 +10,19 @@
                 <li><a href="/" class="nav-link px-2 text-secondary">Главная</a></li>
                 <li><a href="/add" class="nav-link px-2 text-secondary">Добавить статью</a></li>
             </ul>
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <ul sec:authorize="isAuthenticated()">
+                <a class="text-center">Здравствуйте, <span sec:authentication="name">firstName</span></a>
+            </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-1" role="search">
                 <input type="search" class="form-control form-control" placeholder="Search..." aria-label="Search">
             </form>
             <ul sec:authorize="!isAuthenticated()">
                 <a type="button" class="btn btn-outline-primary me-2" href="/login">Login</a>
                 <a type="button" class="btn btn-primary" href="/register">Sign-up</a>
             </ul>
-            <div sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}" type="button" class="btn btn-primary"
-                      method="POST">
-                    <div>
-                        <label>Здравствуйте <span sec:authentication="name">Username</span></label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Logout</button>
-                </form>
-            </div>
+            <ul sec:authorize="isAuthenticated()">
+                <a type="button" th:action="@{/logout}" class="btn btn-primary me-md-2">Logout</a>
+            </ul>
         </div>
     </div>
 </div>
