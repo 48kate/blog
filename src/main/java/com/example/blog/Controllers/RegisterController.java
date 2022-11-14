@@ -36,7 +36,7 @@ public class RegisterController {
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
             return "register";
         }
-        //securityService.autoLogin(account.getUsername(), account.getPasswordConfirm());
+        securityService.autoLogin(account.getUsername(), account.getPasswordConfirm());
         return "redirect:/";
     }
 /*@GetMapping("/register")

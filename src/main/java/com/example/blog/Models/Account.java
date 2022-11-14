@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+//аннотация используется для сопоставления класса с таблицей в бд
 @Entity
 @Table(name = "account")
 

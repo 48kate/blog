@@ -77,7 +77,7 @@ public class ArticleController {
         }
     }
     @PostMapping("/home/{id}")
-    //@PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public String updatePost(@PathVariable Long id, Article article, BindingResult result, Model model) {
 
             Optional<Article> optionalArticle = articleService.getById(id);
@@ -95,7 +95,7 @@ public class ArticleController {
         }
 
     @GetMapping("/home/{id}/edit")
-    //@PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public String getPostForEdit(@PathVariable Long id, Model model) {
 
         // find post by id
@@ -110,14 +110,13 @@ public class ArticleController {
         }
     }
     @GetMapping("/home/{id}/delete")
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String deletePost(@PathVariable Long id) {
 
         // find post by id
         Optional<Article> optionalArticle = articleService.getById(id);
         if (optionalArticle.isPresent()) {
             Article article = optionalArticle.get();
-
             articleService.delete(article);
             return "redirect:/";
         } else {

@@ -20,13 +20,9 @@ public class AdminController {
         return "admin";
     }
 
-    @PostMapping("/admin")
-    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long accountId,
-                              @RequestParam(required = true, defaultValue = "" ) String action,
-                              Model model) {
-        if (action.equals("delete")){
-            accountService.deleteUser(accountId);
-        }
+    @GetMapping("/admin/{id}")
+    public String  deleteUser(@PathVariable Long id) {
+        accountService.deleteUser(id);
         return "redirect:/admin";
     }
 

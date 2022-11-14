@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang=""
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header" class="p-3 mb-3 border-bottom">
+</header>
+<p style="font-size:2rem" class="bold" align="center" th:text="'По вашему запросу ' + '&#34'+  ${search} + '&#34' + ' результатов не найдено!'" />
+</body>
+</html>
+
+
+
