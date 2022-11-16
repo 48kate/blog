@@ -36,7 +36,7 @@ public class ArticleController {
         if (principal != null) {
             authUsername = principal.getName();
         }
-     //используем accountService для поиска юзернэйма
+        //используем accountService для поиска юзернэйма
         Optional<Account> optionalAccount = Optional.ofNullable(accountRepository.findByUsername(authUsername));
         //если аккаунт с таким юзернэймом сущ-ет, то создаем новую статью и присваиваем ей этот аккаунт
         if (optionalAccount.isPresent()) {
@@ -86,6 +86,7 @@ public class ArticleController {
                 existingArticle.setTitle(article.getTitle());
                 existingArticle.setAuthor(article.getAuthor());
                 existingArticle.setFull_text(article.getFull_text());
+                existingArticle.setCategory(article.getCategory());
 
 
                 articleService.save(existingArticle);
@@ -109,7 +110,7 @@ public class ArticleController {
             return "redirect:/home/";
         }
     }
-    @GetMapping("/home/{id}/delete")
+    @GetMapping("/home/{id}/remove")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String deletePost(@PathVariable Long id) {
 
@@ -125,6 +126,7 @@ public class ArticleController {
     }
 
 }
+
 
 
 /*    public String Details(@PathVariable(value = "id") long id, Model model) {

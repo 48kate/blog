@@ -2,7 +2,9 @@ package com.example.blog.Services;
 
 import com.example.blog.Models.Article;
 import com.example.blog.repo.ArticleRepository;
+import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

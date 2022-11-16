@@ -19,8 +19,7 @@ import java.util.*;
 @Service
 public class AccountService implements UserDetailsService {
 
-    @PersistenceContext
-    private EntityManager em;
+
     @Autowired
     private AccountRepository accountRepository;
     @Autowired
@@ -69,10 +68,6 @@ public class AccountService implements UserDetailsService {
         return false;
     }
 
-    public List<Account> usergtList(Long idMin) {
-        return em.createQuery("SELECT u FROM Account u WHERE u.id > :paramId", Account.class)
-                .setParameter("paramId", idMin).getResultList();
-    }
 }
 
 

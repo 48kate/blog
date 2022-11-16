@@ -9,7 +9,7 @@
 <body>
 <header th:insert="blocks/header :: header" class="p-3 mb-3 border-bottom">
 </header>
-<p style="font-size:2rem" class="bold" align="center" th:text="'По вашему запросу ' + '&#34' + ${search} + '&#34' + ' найдено:'" />
+<p style="font-size:2rem" class="bold" align="center" th:utext="'По вашему запросу ' + '&#34' + ${search} + '&#34' + ' найдено:'" />
 <div class="album py-5 bg-light">
     <div class="container">
         <h1 class="text-info" align="center"> Мой блог</h1>

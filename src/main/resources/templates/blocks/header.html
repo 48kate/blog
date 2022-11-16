@@ -14,7 +14,7 @@
             </ul>
             <div sec:authorize="!isAuthenticated()">
                 <form method="post" action="/search" style="margin-right: 0px" class="d-flex justify-content-center" role="search">
-                    <input style="width: 300px" type="search" name="search" class="form-control form-control" placeholder="Введите имя автора или заголовок" aria-label="Search">
+                    <input th:utext="${search}" style="width: 300px" type="search" name="search" class="form-control form-control" placeholder="Введите имя автора или заголовок" aria-label="Search">
                     <button style="margin-right: 0px" type="submit" class="btn btn-primary">Найти</button>
                 </form>
             </div>
@@ -27,7 +27,7 @@
                     <input style="width: 300px" type="search" name="search" class="form-control form-control" placeholder="Введите имя автора или заголовок" aria-label="Search">
                     <button style="margin-right: 0px" type="submit" class="btn btn-primary">Найти</button>
                 </form>
-                </div>
+            </div>
             <div style="margin-left: 10px" sec:authorize="isAuthenticated()">
                 <label>Здравствуйте, <span sec:authentication="name">Username</span></label>
             </div>

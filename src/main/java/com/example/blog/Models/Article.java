@@ -17,10 +17,12 @@ public class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    //private String filename;
     private String title;
     private String author;
     @Column(columnDefinition = "TEXT")
     private String full_text;
+    private String category;
     //private LocalDateTime createdAt;
     //private LocalDateTime updatedAt;
 
@@ -37,6 +39,7 @@ public class Article{
                 ", title='" + title + "'" +
                 ", author='" + author + "'" +
                 ", full_text='" + full_text + "'" +
+                ", category='" + full_text + "'" +
                 "}";
     }
 }

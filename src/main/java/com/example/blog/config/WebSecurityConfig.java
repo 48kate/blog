@@ -41,7 +41,8 @@ public class WebSecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 //Доступ только для пользователей с ролью Администратор
-                .antMatchers("/admin/**").hasRole("USER")
+                //.antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").authenticated()
                 .antMatchers(WHITELIST).permitAll()
                 .antMatchers(HttpMethod.GET, "/home/*").permitAll()
                 .anyRequest().authenticated()

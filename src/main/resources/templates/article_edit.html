@@ -27,6 +27,13 @@
             <label for="new_full_text">Текст статьи</label>
             <textarea id="new_full_text" th:field="*{full_text}" placeholder="Введите полный текст статьи" class="form-control"></textarea><br>
         </div>
+            <p for="new_category">Выберите категорию</p>
+            <select id="new_category" th:field="*{category}" name="select" size="3" multiple>
+                <option value="1">Наука</option>
+                <option value="2">Политика</option>
+                <option value="3">Здоровье</option>
+                <option value="4">Мода</option>
+            </select><br>
         <button type="submit" class="btn btn-success">Обновить статью</button>
     </form>
 </div>

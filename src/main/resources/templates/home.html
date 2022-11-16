@@ -27,14 +27,21 @@
         <a th:href="'/home/' + ${el.id}">Читать полностью</a>
     </div>
 </div-->
-
 <div class="album py-5 bg-light">
     <div class="container">
         <h1 class="text-info" align="center"> Мой блог</h1>
+        <section class="search-filters">
+            <label>Поиск по категориям:</label>
+            <a href="/">Все статьи</a>
+            <a href="/filter?category=1">Наука</a>
+            <a href="/filter?category=2">Политика</a>
+            <a href="/filter?category=3">Здоровье</a>
+            <a href="/filter?category=4">Мода</a>
+        </section><br>
         <div th:each="el : ${articles}" class="card alert alert-info mb-3">
             <div class="row">
                 <div class="col">
-                    <h3 th:text="${el.title}"></h3>
+                    <h3 th:utext="${el.title}"></h3>
                 </div>
             </div>
             <!--div class="row">
@@ -54,7 +61,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <a th:href="'/home/' + ${el.id}" class="btn btn-warning">Читать полностью</a>
+                    <a th:href="'/home/' + ${el.id}" class="btn btn-warning">Детальнее</a>
                 </div>
             </div>
         </div>

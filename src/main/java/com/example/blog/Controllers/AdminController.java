@@ -26,9 +26,4 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/admin/gt/{accountId}")
-    public String  gtUser(@PathVariable("accountId") Long accountId, Model model) {
-        model.addAttribute("allUsers", accountService.usergtList(accountId));
-        return "admin";
-    }
 }
