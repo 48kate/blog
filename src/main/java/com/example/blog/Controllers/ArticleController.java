@@ -1,29 +1,31 @@
 package com.example.blog.Controllers;
-
 import com.example.blog.Models.Account;
 import com.example.blog.Models.Article;
 import com.example.blog.Services.AccountService;
 import com.example.blog.Services.ArticleService;
 import com.example.blog.repo.AccountRepository;
+import com.example.blog.repo.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
+import java.net.URI;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Optional;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @Controller
 public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
-
     @Autowired
-    private AccountService accountService;
+    private ArticleRepository articleRepository;
 
     @Autowired
     private AccountRepository accountRepository;
@@ -36,9 +38,7 @@ public class ArticleController {
         if (principal != null) {
             authUsername = principal.getName();
         }
-        //используем accountService для поиска юзернэйма
         Optional<Account> optionalAccount = Optional.ofNullable(accountRepository.findByUsername(authUsername));
-        //если аккаунт с таким юзернэймом сущ-ет, то создаем новую статью и присваиваем ей этот аккаунт
         if (optionalAccount.isPresent()) {
             Article article = new Article();
             article.setAccount(optionalAccount.get());
@@ -51,30 +51,13 @@ public class ArticleController {
     }
     @PostMapping("/add")
     @PreAuthorize("isAuthenticated()")
-    public String PostAdd(@ModelAttribute Article article, Principal principal) {
-        String authUsername = "anonymousUser";
-        if (principal != null) {
-            authUsername = principal.getName();
-        }
-        if (article.getAccount().getUsername().compareToIgnoreCase(authUsername) < 0) {
-            // our account email on the Post not equal to current logged in account!
-        }
-        articleService.save(article);
-        return "redirect:/home/" + article.getId();
+    public ResponseEntity<Article> createArticle(@RequestBody Article article)  {
+        Article saved = articleRepository.save(article);
+        return new ResponseEntity<>(saved, prepareHeader(saved.getId()), HttpStatus.CREATED);
     }
     @GetMapping("/home/{id}")
-    public String Details(@PathVariable long id, Model model) {
-        // ищем статью по id
-        Optional<Article> optionalArticle = this.articleService.getById(id);
-
-        // если пост существует, поместить его в модель
-        if (optionalArticle.isPresent()) {
-            Article article = optionalArticle.get();
-            model.addAttribute("article", article);
-            return "details";
-        } else {
-            return "redirect:/home/";
-        }
+    public ResponseEntity<Optional<Article>> findArticle(@PathVariable Long id)  {
+        return ResponseEntity.ok(articleService.getById(id));
     }
     @PostMapping("/home/{id}")
     @PreAuthorize("isAuthenticated()")
@@ -124,21 +107,11 @@ public class ArticleController {
             return "redirect:/";
         }
     }
-
+    private HttpHeaders prepareHeader (Long id) {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        URI uri = fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
+        responseHeaders.setLocation(uri);
+        return responseHeaders;
+    }
 }
 
-
-
-/*    public String Details(@PathVariable(value = "id") long id, Model model) {
-        if (!ArticleRepository.existsById(id)){
-            return "redirect:/";
-        }
-        Optional<Article> article = ArticleRepository.findById(id);
-        ArrayList<Article> res = new ArrayList<>();
-        article.ifPresent(res::add);
-        model.addAttribute("article", res);
-        return "details"; */
-/*public String Add(Model model) {
-    Article article = new Article();
-    model.addAttribute("article", article);
-    return "add";*/

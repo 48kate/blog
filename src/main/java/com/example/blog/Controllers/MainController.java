@@ -2,6 +2,7 @@ package com.example.blog.Controllers;
 
 import com.example.blog.Models.Article;
 import com.example.blog.Services.AccountService;
+import com.example.blog.Services.ArticleService;
 import com.example.blog.repo.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,7 @@ public class MainController {
         model.addAttribute("articles", articles);
         return "home";
     }
+
     @PostMapping("/search")
     public String search(@RequestParam String search, Map<String, Object> model) {
         List<Article> articles;
@@ -48,13 +50,6 @@ public class MainController {
             return "search_error";
         }
     }
-    /*
-    @GetMapping("/filter")
-    public String category(@RequestParam String category, Map<String, Object> model) {
-        List<Article> articles = articleRepository.findByCategory(category);
-        model.put("articles", articles);
-        return "home";
-    } */
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
     public String category(Model model, @RequestParam String category) {
         System.out.println(1);
@@ -67,38 +62,6 @@ public class MainController {
         return "home";
     }
 
-//    @GetMapping("/filter?category=science")
-//    public String science (Map<String, Object> model){
-//        System.out.println("science");
-//        List<Article> articles = articleRepository.findByCategory("science");
-//        model.put("articles", articles);
-//        return "home";
-//    }
-//
-//    @GetMapping("/filter?category=politics")
-//    public String politics (Model model){
-//        Iterable<Article> articles = articleRepository.findByCategoryPolitics();
-//        model.addAttribute("articles", articles);
-//        return "filter?category=politics";
-//    }
-//    @GetMapping("/filter?category=health")
-//    public String health (Model model){
-//        Iterable<Article> articles = articleRepository.findByCategoryHealth();
-//        model.addAttribute("articles", articles);
-//        return "filter?category=health";
-//    }
-//    @GetMapping("/filter?category=fashion")
-//    public String fashion (Model model){
-//        Iterable<Article> articles = articleRepository.findByCategoryFashion();
-//        model.addAttribute("articles", articles);
-//        return "filter?category=fashion";
-//    }
-
 }
 
-
-/* @PostMapping("/search")
-    public ResponseEntity<List<Article>> search(@RequestParam("query") String query){
-     List<Article> articles = articleRepository.search(query);
-     return ResponseEntity.ok(articles); */
 

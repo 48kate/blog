@@ -1,5 +1,4 @@
 package com.example.blog.Models;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

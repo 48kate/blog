@@ -1,12 +1,9 @@
 package com.example.blog.Models;
-
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 // отвечает за хранение всех статей
 @Entity
@@ -17,14 +14,12 @@ public class Article{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    //private String filename;
     private String title;
     private String author;
     @Column(columnDefinition = "TEXT")
     private String full_text;
     private String category;
-    //private LocalDateTime createdAt;
-    //private LocalDateTime updatedAt;
+    private String img;
 
     @NotNull
     @ManyToOne

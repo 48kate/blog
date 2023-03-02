@@ -1,5 +1,4 @@
 package com.example.blog.Controllers;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +17,5 @@ public class LoginController {
         return "login";
 
     }
-   /*
-    @GetMapping("/login")
-    public String getLogin () {
-        return "login";
-    } */
 
 }
